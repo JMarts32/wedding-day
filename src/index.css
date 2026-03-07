@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: light;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #f6f2e7;
+  color: rgba(159, 151, 139, 0.95);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Helpers para que se vea tipo invitación */
+.invite-container {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.invite-text {
+  font-family: "Montserrat", ui-serif, Georgia, serif;
+  color: #60615d;
+  line-height: 1.5;
+}
+
+.invite-label {
+  font-family: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: 0.18em;
+  font-size: 11px;
+  color: rgba(159, 151, 139, 0.68);
+}
+
+.text-center {
+  color: #60615d
+}
+
+.text-center-silvia {
+  color: #60615d
+}
