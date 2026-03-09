@@ -1,8 +1,10 @@
 "use client"
 
 import { useRef, useState, useEffect } from "react"
+import { useT } from "../i18n/LocaleContext"
 
 export default function AudioCard() {
+  const t = useT()
   const audioRef = useRef<HTMLAudioElement>(null)
   const [isPlaying, setIsPlaying] = useState(false)
   const [currentTime, setCurrentTime] = useState(0)
@@ -61,8 +63,8 @@ export default function AudioCard() {
     <div className="mx-auto max-w-md rounded-3xl border-sand-200 px-6 py-5">
       <audio ref={audioRef} src="/audio_silvia.mp3" preload="metadata" />
 
-      <div className="text-center font-['Brittany','Great_Vibes',cursive] font-script text-sand-500 text-[clamp(1rem,12.5vw,4rem)]">
-        Tenemos un mensaje
+      <div className="text-center font-['Brittany','Great_Vibes',cursive] text-sand-500 text-[clamp(2rem,10vw,4rem)]">
+        {t.audioCard.title}
       </div>
 
       <div className="mt-4 rounded-2xl bg-white/50 border border-sand-200 px-4 py-3">

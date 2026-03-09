@@ -1,75 +1,75 @@
-import type React from "react"
+import { useT } from "../i18n/LocaleContext"
 
 export default function DressCode() {
+  const t = useT()
+
   return (
     <div className="text-center">
       {/* Título */}
-      <h2 className="font-['Brittany','Great_Vibes',cursive] text-[clamp(3rem,12vw,5rem)] leading-none text-sand-500">
-        Dress code
+      <h2 className="font-['Brittany','Great_Vibes',cursive] text-[clamp(3rem,12vw,5rem)] leading-none text-sand-500/90">
+        {t.dressCode.title}
       </h2>
-      <div className="font-['Brittany','Great_Vibes',cursive] text-[clamp(2rem,8vw,3.5rem)] leading-none text-sand-500/80 -mt-1">
-        Formal
+      <div className="font-['Brittany','Great_Vibes',cursive] text-[clamp(2rem,8vw,3.5rem)] leading-none text-sand-500/90 -mt-1">
+        {t.dressCode.subtitle}
       </div>
 
       {/* Banner verde */}
       <div className="mt-8 mx-auto max-w-2xl bg-[#8A9E8A]/25 border-y border-[#8A9E8A]/40 px-6 py-4">
-        <p className="font-serif text-[15px] sm:text-[16px] text-[#4a5e4a] leading-snug">
-          Para mantener la armonía de la celebración, el color verde estará reservado.
+        <p className="font-serif text-[17px] sm:text-[18px] text-[#4a5e4a] leading-snug">
+          {t.dressCode.banner}
         </p>
       </div>
 
-      {/* Grid principal — 3 filas: texto | icono | botón */}
-      <div className="mt-10 max-w-2xl mx-auto px-4 grid grid-cols-2 gap-x-16">
+      {/* Grid principal — 1 col en móvil, 2 en sm+ */}
+      {/* Orden en DOM = columnas en desktop (auto-flow por filas); order CSS para mobile */}
+      <div className="mt-10 max-w-2xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 gap-x-16">
 
         {/* FILA 1 — Títulos y texto */}
-        <div className="flex flex-col items-center gap-3">
-          <div className="w-full border-b border-sand-300/60 pb-2">
-            <div className="font-serif text-[2rem] sm:text-[2.2rem] text-sand-500">Mujeres</div>
+        <div className="flex flex-col items-center gap-3 order-1 sm:order-none">
+          <div className="w-full border-b border-[#d4c4a8]/40 pb-2">
+            <div className="font-serif text-[2.2rem] sm:text-[2.5rem] text-[#9f978b]">{t.dressCode.women}</div>
           </div>
-          <p className="font-serif text-[16px] sm:text-[18px] leading-relaxed text-sand-500/80">
-            Queremos que se sientan hermosas, cómodas y seguras mientras celebramos juntos.
-            Nuestro espacio está rodeado de naturaleza y zonas de pasto, por lo que les sugerimos
-            tenerlo en cuenta al elegir sus tacones, para que puedan disfrutar la celebración sin preocupaciones.
+          <p className="font-serif text-[20px] sm:text-[21px] leading-relaxed text-[#9f978b]/80">
+            {t.dressCode.womenDesc}
           </p>
         </div>
 
-        <div className="flex flex-col items-center gap-3">
-          <div className="w-full border-b border-sand-300/60 pb-2">
-            <div className="font-serif text-[2rem] sm:text-[2.2rem] text-sand-500">Hombres</div>
+        <div className="flex flex-col items-center gap-3 order-4 sm:order-none mt-10 sm:mt-0">
+          <div className="w-full border-b border-[#d4c4a8]/40 pb-2">
+            <div className="font-serif text-[2.2rem] sm:text-[2.5rem] text-[#9f978b]">{t.dressCode.men}</div>
           </div>
-          <p className="font-serif text-[16px] sm:text-[18px] leading-relaxed text-sand-500/80">
-            Para acompañar el estilo de la celebración y el clima cálido de Bucaramanga, el atuendo
-            sugerido para hombres es guayabera formal, una opción elegante y fresca para la ocasión.
+          <p className="font-serif text-[20px] sm:text-[21px] leading-relaxed text-[#9f978b]/80">
+            {t.dressCode.menDesc}
           </p>
         </div>
 
-        {/* FILA 2 — Iconos alineados al fondo del área de texto */}
-        <div className="flex items-end justify-center mt-6">
+        {/* FILA 2 — Iconos */}
+        <div className="flex items-end justify-center mt-6 order-2 sm:order-none">
           <IconDress className="h-36 w-36 text-[#c8a84b]" />
         </div>
 
-        <div className="flex items-end justify-center mt-6">
+        <div className="flex items-end justify-center mt-6 order-5 sm:order-none">
           <IconShirt className="h-36 w-36 text-[#c8a84b]" />
         </div>
 
         {/* FILA 3 — Botones */}
-        <div className="flex justify-center mt-6">
+        <div className="flex justify-center mt-6 mb-4 order-3 sm:order-none">
           <button
             type="button"
             onClick={() => window.open("https://co.pinterest.com/silvia97/mujeres/?invite_code=7b5cc51cb44c4cb48c9b809bad41ca63&sender=549298623209285358", "_blank")}
             className="cursor-pointer inline-flex items-center justify-center rounded-full bg-[#6b7c6b] px-10 py-2.5 text-sm font-sans tracking-widest text-white hover:bg-[#5a6b5a] transition-colors"
           >
-            IDEAS
+            {t.dressCode.ideas}
           </button>
         </div>
 
-        <div className="flex justify-center mt-6">
+        <div className="flex justify-center mt-6 mb-4 order-6 sm:order-none">
           <button
             type="button"
             onClick={() => window.open("https://co.pinterest.com/silvia97/hombre/?invite_code=a4b8f82174ac4115adb421a58073fd3e&sender=549298623209285358", "_blank")}
             className="cursor-pointer inline-flex items-center justify-center rounded-full bg-[#6b7c6b] px-10 py-2.5 text-sm font-sans tracking-widest text-white hover:bg-[#5a6b5a] transition-colors"
           >
-            IDEAS
+            {t.dressCode.ideas}
           </button>
         </div>
 

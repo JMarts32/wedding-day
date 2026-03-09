@@ -1,4 +1,5 @@
 import Hero from "../components/Hero"
+import FloralBackground from "../components/FloralBackground"
 import Section from "../components/Section"
 import Countdown from "../components/Countdown"
 import AudioCard from "../components/AudioCard"
@@ -9,43 +10,41 @@ import DressCode from "../components/DressCode"
 import Envelope from "../components/Envelope"
 import Recommendations from "../components/Recomendations"
 import RSVP from "../components/RSVP"
+import { useT } from "../i18n/LocaleContext"
 // import DividerFlourish from "../components/DividerFlourish"
 
 export default function Home() {
+  const t = useT()
+
   return (
     <div className="min-h-screen text-sand-500">
+      <FloralBackground />
       <Hero />
 
       <Section>
         <div className="text-center">
-          <div className="invite-text mb-3 font-bold text-[22px]">¡BIENVENIDOS!</div>
+          <div className="invite-text mb-3 font-bold text-[22px]">{t.welcome.title}</div>
 
-          <p className="invite-text text-[20px] sm:text-[22px]">
-            Nos llena de alegría compartir este momento tan especial con ustedes.
-            Estamos dando un paso muy importante en nuestras vidas y{" "}
-            <span className="font-bold">
-              será un honor que nos acompañen a celebrarlo.
-            </span>
+          <p className="invite-text text-[23px] sm:text-[20px]">
+            {t.welcome.p1}
+            <span className="font-bold">{t.welcome.p1bold}</span>
           </p>
 
-          <p className="invite-text text-[20px] sm:text-[22px] mt-6">
-            Hemos preparado este espacio con mucho amor para que{" "}
-            <span className="font-bold text-sand-500/90">
-              encuentren todos los detalles de nuestra boda
-            </span>{" "}
-            y puedan ser parte de este día tan significativo para nosotros.
+          <p className="invite-text text-[23px] sm:text-[20px] mt-6">
+            {t.welcome.p2}
+            <span className="font-bold text-sand-500/90">{t.welcome.p2bold}</span>
+            {t.welcome.p2end}
           </p>
 
-          <p className="invite-text text-[20px] sm:text-[22px] mt-6 font-bold">
-            Aquí podrás conocer la información del evento.
+          <p className="invite-text text-[23px] sm:text-[20px] mt-6 font-bold">
+            {t.welcome.p3}
           </p>
         </div>
       </Section>
 
-
       <Section>
-        <h2 className=" text-center text-7xl sm:text-8xl text-sand-500 font-['Brittany','Great_Vibes',cursive]">
-          Nos vemos en
+        <h2 className="text-center text-[clamp(3.5rem,14vw,6rem)] text-sand-500 font-['Brittany','Great_Vibes',cursive]">
+          {t.countdown.title}
         </h2>
 
         <div className="mt-6">
@@ -65,11 +64,11 @@ export default function Home() {
         <InfoCards />
       </Section>
 
-      <Section>
+      <Section className="pb-2 sm:pb-3">
         <Timeline />
       </Section>
 
-      <Section>
+      <Section className="pt-2 sm:pt-3">
         <DressCode />
       </Section>
 
@@ -86,7 +85,7 @@ export default function Home() {
       </Section>
 
       <footer className="py-10 text-center text-xs font-sans tracking-wide text-sand-500/60">
-        Silvia & Owen · 27.06.2026
+        {t.footer}
       </footer>
     </div>
   )

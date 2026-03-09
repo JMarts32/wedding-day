@@ -10,8 +10,8 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-t from-[#3A2C24]/80 via-[#3A2C24]/30 to-transparent" />
 
       <div className="absolute inset-0 flex items-end justify-center pb-14">
-        <div className="text-white">
-          <div className="font-['Brittany','Great_Vibes',cursive] text-8xl sm:text-9xl drop-shadow">
+        <div className="text-white text-center">
+          <div className="font-['Brittany','Great_Vibes',cursive] text-8xl sm:text-9xl drop-shadow opacity-95 text-white">
             Silvia & Owen
           </div>
           <div className="mt-5 flex flex-col items-center text-white">

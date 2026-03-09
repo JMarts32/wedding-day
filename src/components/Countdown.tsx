@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react"
 import confetti from "canvas-confetti"
+import { useT } from "../i18n/LocaleContext"
 
 function pad2(n: number) {
   return String(n).padStart(2, "0")
@@ -26,13 +27,14 @@ function fireConfetti() {
 }
 
 export default function Countdown({ targetIso }: { targetIso: string }) {
+  const t = useT()
   const target = useMemo(() => new Date(targetIso).getTime(), [targetIso])
   const [now, setNow] = useState(Date.now())
   const hasFiredRef = useRef(false)
 
   useEffect(() => {
-    const t = setInterval(() => setNow(Date.now()), 1000)
-    return () => clearInterval(t)
+    const timer = setInterval(() => setNow(Date.now()), 1000)
+    return () => clearInterval(timer)
   }, [])
 
   const diff = Math.max(0, target - now)
@@ -52,7 +54,7 @@ export default function Countdown({ targetIso }: { targetIso: string }) {
 
   return (
     <div className="py-6">
-      <div className="flex items-baseline justify-center gap-6 sm:gap-10">
+      <div className="flex items-baseline justify-center gap-3 sm:gap-8">
         <Num value={String(days)} />
         <Sep />
         <Num value={pad2(hours)} />
@@ -62,14 +64,14 @@ export default function Countdown({ targetIso }: { targetIso: string }) {
         <Num value={pad2(seconds)} />
       </div>
 
-      <div className="mt-3 flex items-center justify-center gap-6 sm:gap-10">
-        <Lab text="DÍAS" />
+      <div className="mt-3 flex items-center justify-center gap-3 sm:gap-8">
+        <Lab text={t.countdown.days} />
         <LabSpacer />
-        <Lab text="HORAS" />
+        <Lab text={t.countdown.hours} />
         <LabSpacer />
-        <Lab text="MINUTOS" />
+        <Lab text={t.countdown.minutes} />
         <LabSpacer />
-        <Lab text="SEGUNDOS" />
+        <Lab text={t.countdown.seconds} />
       </div>
     </div>
   )
@@ -77,7 +79,7 @@ export default function Countdown({ targetIso }: { targetIso: string }) {
 
 function Num({ value }: { value: string }) {
   return (
-    <div className="font-['Lovelace',serif] tabular-nums text-[64px] sm:text-[84px] leading-none font-light tracking-[0.06em] text-[#7E8C84]">
+    <div className="font-['Lovelace',serif] tabular-nums text-[clamp(2.5rem,10vw,5.25rem)] leading-none font-light tracking-[0.06em] text-[#7E8C84]">
       {value}
     </div>
   )
@@ -85,7 +87,7 @@ function Num({ value }: { value: string }) {
 
 function Sep() {
   return (
-    <div className="font-['Lovelace',serif] text-[44px] sm:text-[58px] leading-none text-[#7E8C84]/90 translate-y-[2px]" aria-hidden="true">
+    <div className="font-['Lovelace',serif] text-[clamp(1.75rem,7vw,3.6rem)] leading-none text-[#7E8C84]/90 translate-y-[2px]" aria-hidden="true">
       ·
     </div>
   )
@@ -93,8 +95,8 @@ function Sep() {
 
 function Lab({ text }: { text: string }) {
   return (
-    <div className="w-[78px] sm:w-[92px] text-center">
-      <div className="font-['Lovelace',serif] text-[18px] sm:text-[22px] tracking-[0.22em] text-[#7E8C84]/85">
+    <div className="w-[clamp(3.5rem,12vw,5.75rem)] text-center">
+      <div className="font-['Lovelace',serif] text-[clamp(0.65rem,2.2vw,1.375rem)] tracking-[0.18em] text-[#7E8C84]/85">
         {text}
       </div>
     </div>
@@ -102,5 +104,5 @@ function Lab({ text }: { text: string }) {
 }
 
 function LabSpacer() {
-  return <div className="w-[18px] sm:w-[22px]" aria-hidden="true" />
+  return <div className="w-[clamp(0.75rem,2.5vw,1.375rem)]" aria-hidden="true" />
 }

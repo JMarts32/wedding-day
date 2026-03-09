@@ -1,17 +1,21 @@
+import { useT } from "../i18n/LocaleContext"
+
 export default function InfoCards() {
+  const t = useT()
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 sm:gap-14">
       {/* Card: El lugar */}
       <div className="bg-[#E7E9E4]/80 p-10 sm:p-12 text-center">
-        <div className="text-[56px] leading-none text-sand-500/90 font-['Brittany','Great_Vibes',cursive]">
-          El lugar
+        <div className="text-[clamp(3rem,10vw,4rem)] leading-none text-sand-500/90 font-['Brittany','Great_Vibes',cursive]">
+          {t.infoCards.locationTitle}
         </div>
 
         <div className="mt-6 flex justify-center">
           <LocationPinSvg className="h-28 w-28 text-[#5E7A64] opacity-80" />
         </div>
 
-        <p className="mt-3 font-serif text-[18px] leading-[1.5] text-sand-500/75">
+        <p className="mt-3 font-serif text-[21px] leading-[1.6] text-sand-500/75">
           Km 7, vía Retorno Tablanca. Urbanización: Tablanca. Parcela: N° 12,<br />
           Piedecuesta, Santander
         </p>
@@ -20,28 +24,28 @@ export default function InfoCards() {
           href="https://www.google.com/maps/place/Villa+Jard%C3%ADn+Piedecuesta/@7.0130881,-73.059641,17z/data=!3m1!4b1!4m6!3m5!1s0x8e6847145314aefb:0xa504288c87a45af8!8m2!3d7.0130881!4d-73.059641!16s%2Fg%2F11bw20s1qb?entry=ttu"
           target="_blank"
           rel="noreferrer"
-          className="mt-8 inline-flex items-center justify-center rounded-full bg-[#7E8C84] px-12 py-3 font-sans text-[20px] tracking-[0.28em] text-white/95 hover:opacity-95"
+          className="mt-8 inline-flex items-center justify-center rounded-full bg-[#7E8C84] px-12 py-3 font-sans text-[15px] tracking-[0.28em] text-white/95 hover:opacity-95"
         >
-          MAPA
+          {t.infoCards.map}
         </a>
       </div>
 
       {/* Card: Clima */}
       <div className="bg-[#E7E9E4]/80 p-10 sm:p-12">
-        <div className="text-center text-[56px] leading-none text-sand-500/80 font-['Brittany','Great_Vibes',cursive]">
-          Clima en Junio
+        <div className="text-center text-[clamp(3rem,10vw,4rem)] leading-none text-sand-500/80 font-['Brittany','Great_Vibes',cursive]">
+          {t.infoCards.climateTitle}
         </div>
 
-        <div className="text-center mt-14 font-serif text-[40px] leading-none text-sand-500/90">
-          Bucaramanga
+        <div className="text-center mt-10 font-serif text-[36px] leading-none text-sand-500/90">
+          {t.infoCards.city}
         </div>
 
-        <div className="text-center mt-8 space-y-6 font-serif text-[16px] text-sand-500/75">
-          <Row label="MÁXIMA" value="28°C" />
+        <div className="text-center mt-8 space-y-6 font-serif text-[22px] text-sand-500/75">
+          <Row label={t.infoCards.max} value="28°C" />
           <Divider />
-          <Row label="MÍNIMA" value="19°C" />
+          <Row label={t.infoCards.min} value="19°C" />
           <Divider />
-          <Row label="AMBIENTE" value="Primavera eterna" valueRightWrap />
+          <Row label={t.infoCards.environment} value={t.infoCards.eternal} valueRightWrap />
         </div>
       </div>
     </div>

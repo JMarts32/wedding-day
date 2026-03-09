@@ -1,33 +1,40 @@
 import type React from "react"
+import { useT } from "../i18n/LocaleContext"
 
 type Item = {
-  title: string
+  titleKey: "welcome" | "ceremony" | "dinner" | "party"
   time: string
   side: "left" | "right"
   Icon: React.ElementType<{ className?: string }>
 }
 
 const items: Item[] = [
-  { title: "Bienvenida",     time: "4:00 PM", side: "left",  Icon: IconWelcome },
-  { title: "Ceremonia",      time: "4:30 PM", side: "right", Icon: IconChurch  },
-  { title: "Cena y brindis", time: "6:30 PM", side: "left",  Icon: IconDinner  },
-  { title: "Fiesta",         time: "—",       side: "right", Icon: IconParty   },
+  { titleKey: "welcome",  time: "4:00 PM", side: "left",  Icon: IconWelcome },
+  { titleKey: "ceremony", time: "4:30 PM", side: "right", Icon: IconChurch  },
+  { titleKey: "dinner",   time: "6:30 PM", side: "left",  Icon: IconDinner  },
+  { titleKey: "party",    time: "—",       side: "right", Icon: IconParty   },
 ]
 
 export default function Timeline() {
+  const t = useT()
+
   return (
-    <section className="py-12 text-center">
-      <h2 className="font-['Brittany','Great_Vibes',cursive] text-[clamp(2.5rem,10vw,5rem)] leading-none text-sand-500/90">
-        El gran día
+    <section className="py-4 text-center">
+      <h2 className="font-['Brittany','Great_Vibes',cursive] text-[clamp(3rem,12vw,5rem)] leading-none text-sand-500/90">
+        {t.timeline.title}
       </h2>
 
-      <div className="relative mt-14 mx-auto max-w-xl px-6">
+      <div className="relative mt-14 mx-auto max-w-xl px-4 sm:px-6">
         {/* Línea vertical central */}
         <div className="absolute left-1/2 -translate-x-1/2 top-8 bottom-8 w-px bg-sand-300/50" />
 
         <div className="flex flex-col">
-          {items.map((item, idx) => (
-            <Row key={item.title} item={item} isLast={idx === items.length - 1} />
+          {items.map((item) => (
+            <Row
+              key={item.titleKey}
+              item={item}
+              title={t.timeline[item.titleKey]}
+            />
           ))}
         </div>
       </div>
@@ -35,24 +42,24 @@ export default function Timeline() {
   )
 }
 
-function Row({ item, isLast }: { item: Item; isLast: boolean }) {
+function Row({ item, title }: { item: Item; title: string }) {
   const isLeft = item.side === "left"
 
   return (
-    <div className="grid grid-cols-2 items-center py-6">
+    <div className="grid grid-cols-2 items-center py-4 sm:py-6">
       {/* Celda izquierda */}
-      <div className="flex justify-end pr-8">
+      <div className="flex justify-end pr-5 sm:pr-8">
         {isLeft
           ? <Bubble Icon={item.Icon} />
-          : <Label title={item.title} time={item.time} align="right" />
+          : <Label title={title} time={item.time} align="right" />
         }
       </div>
 
       {/* Celda derecha */}
-      <div className="flex justify-start pl-8">
+      <div className="flex justify-start pl-5 sm:pl-8">
         {!isLeft
           ? <Bubble Icon={item.Icon} />
-          : <Label title={item.title} time={item.time} align="left" />
+          : <Label title={title} time={item.time} align="left" />
         }
       </div>
     </div>
@@ -62,8 +69,8 @@ function Row({ item, isLast }: { item: Item; isLast: boolean }) {
 function Bubble({ Icon }: { Icon: React.ElementType<{ className?: string }> }) {
   return (
     <div className="relative">
-      <div className="h-32 w-32 sm:h-36 sm:w-36 rounded-full border border-sand-200 bg-sand-50/60 flex items-center justify-center">
-        <Icon className="h-18 w-18 sm:h-20 sm:w-20 text-[#7E8C84] opacity-80" />
+      <div className="h-24 w-24 sm:h-32 sm:w-32 rounded-full border border-sand-200 bg-sand-50/60 flex items-center justify-center">
+        <Icon className="h-14 w-14 sm:h-18 sm:w-18 text-[#7E8C84] opacity-80" />
       </div>
       <Leaves className="absolute -bottom-3 left-1/2 -translate-x-1/2 h-5 w-12 text-sand-400/40" />
     </div>
@@ -73,11 +80,11 @@ function Bubble({ Icon }: { Icon: React.ElementType<{ className?: string }> }) {
 function Label({ title, time, align }: { title: string; time: string; align: "left" | "right" }) {
   return (
     <div className={align === "right" ? "text-right" : "text-left"}>
-      <div className="font-serif italic text-[36px] sm:text-[38px] text-sand-500/85 leading-snug">
+      <div className="font-serif italic text-[clamp(1.4rem,5vw,2.25rem)] text-sand-500/85 leading-snug">
         {title}
       </div>
       {time !== "—" && (
-        <div className="font-serif text-[24px] text-sand-500/60 mt-0.5">{time}</div>
+        <div className="font-serif text-[clamp(1rem,3.5vw,1.5rem)] text-sand-500/60 mt-0.5">{time}</div>
       )}
     </div>
   )

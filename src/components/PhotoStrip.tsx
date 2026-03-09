@@ -9,8 +9,8 @@ export default function PhotoStrip() {
 
 function Photo({ src, alt }: { src: string; alt: string }) {
   return (
-    <div className="overflow-hidden rounded-xl border-sand-200 bg-blak/100 opacity-90">
-      <img src={src} alt={alt} className="h-150 sm:h-114 w-full object-cover" />
+    <div className="overflow-hidden rounded-xl border-sand-200 bg-black/100 opacity-90">
+      <img src={src} alt={alt} className="h-64 sm:h-96 md:h-[480px] w-full object-cover" />
     </div>
   )
 }

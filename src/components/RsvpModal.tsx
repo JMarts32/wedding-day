@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useT } from "../i18n/LocaleContext"
 
 interface Guest {
   name: string
@@ -16,6 +17,7 @@ export default function RsvpModal({
   open: boolean
   onClose: () => void
 }) {
+  const t = useT()
   const [step, setStep] = useState<ModalStep>("form")
   const [errorMsg, setErrorMsg] = useState("")
   const [guests, setGuests] = useState<Guest[]>([{ name: "", email: "" }])
@@ -54,13 +56,13 @@ export default function RsvpModal({
         body: JSON.stringify({ guests }),
       })
       const data = await res.json()
-      if (!res.ok) throw new Error(data.detail ?? "Error desconocido")
+      if (!res.ok) throw new Error(data.detail ?? "Error")
       setStep("success")
       import("canvas-confetti").then(({ default: confetti }) => {
         confetti({ particleCount: 120, spread: 70, origin: { y: 0.6 } })
       })
     } catch (err: unknown) {
-      setErrorMsg(err instanceof Error ? err.message : "Error al confirmar")
+      setErrorMsg(err instanceof Error ? err.message : "Error")
       setStep("error")
     }
   }
@@ -69,25 +71,25 @@ export default function RsvpModal({
     <div className="fixed inset-0 z-50">
       <div className="absolute inset-0 bg-black/30 backdrop-blur-sm" onClick={handleClose} />
 
-      <div className="absolute inset-0 flex items-center justify-center px-4">
+      <div className="absolute inset-0 flex items-center justify-center px-3 sm:px-4">
         <div className="w-full max-w-2xl rounded-3xl bg-[#f5f2eb] border border-sand-200 shadow-2xl overflow-hidden">
 
           {/* Header */}
-          <div className="px-9 py-7 border-b border-sand-200/60">
+          <div className="px-6 sm:px-9 py-5 sm:py-7 border-b border-sand-200/60">
             <div className="flex items-center justify-between">
               <div>
-                <div className="font-['Brittany','Great_Vibes',cursive] text-6xl text-sand-500 leading-none">
-                  RSVP
+                <div className="font-['Brittany','Great_Vibes',cursive] text-5xl sm:text-6xl text-sand-500 leading-none">
+                  {t.rsvp.title}
                 </div>
-                <div className="font-serif italic text-[18px] text-stone-600 mt-1">
-                  Confirma tu asistencia
+                <div className="font-serif italic text-[17px] text-stone-600 mt-1">
+                  {t.modal.subtitle}
                 </div>
               </div>
               <button
                 type="button"
                 onClick={handleClose}
                 className="h-11 w-11 rounded-full border border-sand-200 bg-white/60 text-stone-500 hover:text-stone-700 hover:bg-white transition-colors cursor-pointer flex items-center justify-center text-base"
-                aria-label="Cerrar"
+                aria-label={t.modal.close}
               >
                 ✕
               </button>
@@ -95,18 +97,19 @@ export default function RsvpModal({
           </div>
 
           {/* Body */}
-          <div className="px-9 py-7 max-h-[75vh] overflow-y-auto">
+          <div className="px-6 sm:px-9 py-5 sm:py-7 max-h-[70vh] overflow-y-auto">
 
             {/* Success */}
             {step === "success" && (
               <div className="py-10 text-center">
                 <div className="text-6xl mb-5">🎉</div>
-                <div className="font-['Brittany','Great_Vibes',cursive] text-6xl text-sand-500 mb-4">
-                  ¡Confirmado!
+                <div className="font-['Brittany','Great_Vibes',cursive] text-5xl sm:text-6xl text-sand-500 mb-4">
+                  {t.modal.successTitle}
                 </div>
-                <p className="font-serif italic text-[20px] text-stone-600 leading-relaxed">
-                  Nos vemos el <strong className="not-italic font-semibold">27 de junio</strong>.<br />
-                  Revisa tu correo — te enviamos la confirmación y el evento de calendario.
+                <p className="font-serif italic text-[18px] sm:text-[20px] text-stone-600 leading-relaxed">
+                  {t.modal.successText}
+                  <strong className="not-italic font-semibold">{t.modal.successDate}</strong>
+                  {t.modal.successEmail}
                 </p>
               </div>
             )}
@@ -115,13 +118,13 @@ export default function RsvpModal({
             {step === "error" && (
               <div className="py-8 text-center">
                 <div className="text-5xl mb-4">😕</div>
-                <p className="font-serif italic text-[20px] text-stone-600 mb-6">{errorMsg}</p>
+                <p className="font-serif italic text-[18px] sm:text-[20px] text-stone-600 mb-6">{errorMsg}</p>
                 <button
                   type="button"
                   onClick={() => setStep("form")}
-                  className="rounded-full border border-sand-300 px-8 py-3 text-[15px] font-sans tracking-widest text-stone-600 hover:bg-sand-100 transition-colors cursor-pointer"
+                  className="rounded-full border border-sand-300 px-8 py-3 text-[14px] font-sans tracking-widest text-stone-600 hover:bg-sand-100 transition-colors cursor-pointer"
                 >
-                  INTENTAR DE NUEVO
+                  {t.modal.errorRetry}
                 </button>
               </div>
             )}
@@ -129,8 +132,8 @@ export default function RsvpModal({
             {/* Loading */}
             {step === "loading" && (
               <div className="py-14 text-center">
-                <div className="font-serif italic text-[20px] text-stone-500 animate-pulse">
-                  Confirmando asistencia…
+                <div className="font-serif italic text-[18px] sm:text-[20px] text-stone-500 animate-pulse">
+                  {t.modal.loading}
                 </div>
               </div>
             )}
@@ -138,26 +141,26 @@ export default function RsvpModal({
             {/* Form */}
             {step === "form" && (
               <>
-                <p className="font-serif italic text-[18px] text-stone-600 mb-7 leading-relaxed">
-                  Si vienen varios en el mismo grupo, agrega a cada persona por separado.
+                <p className="font-serif italic text-[17px] text-stone-600 mb-7 leading-relaxed">
+                  {t.modal.intro}
                 </p>
 
                 {guests.map((guest, index) => (
                   <div
                     key={index}
-                    className="mb-5 rounded-2xl border border-sand-200 bg-white/50 p-6"
+                    className="mb-5 rounded-2xl border border-sand-200 bg-white/50 p-5 sm:p-6"
                   >
                     <div className="flex items-center justify-between mb-4">
-                      <span className="font-sans text-[13px] tracking-widest text-stone-400">
-                        INVITADO {index + 1}
+                      <span className="font-sans text-[12px] tracking-widest text-stone-400">
+                        {t.modal.guest} {index + 1}
                       </span>
                       {guests.length > 1 && (
                         <button
                           type="button"
                           onClick={() => removeGuest(index)}
-                          className="font-sans text-[15px] text-stone-400 hover:text-stone-600 transition-colors cursor-pointer"
+                          className="font-sans text-[14px] text-stone-400 hover:text-stone-600 transition-colors cursor-pointer"
                         >
-                          Eliminar
+                          {t.modal.remove}
                         </button>
                       )}
                     </div>
@@ -166,15 +169,15 @@ export default function RsvpModal({
                       type="text"
                       value={guest.name}
                       onChange={e => updateGuest(index, "name", e.target.value)}
-                      placeholder="Nombre completo"
-                      className="w-full rounded-xl border border-sand-200 bg-white/70 px-5 py-4 font-serif text-[18px] text-stone-700 placeholder:text-stone-300 outline-none focus:border-[#6b7c6b] transition-colors mb-3"
+                      placeholder={t.modal.namePlaceholder}
+                      className="w-full rounded-xl border border-sand-200 bg-white/70 px-5 py-4 font-serif text-[17px] text-stone-700 placeholder:text-stone-300 outline-none focus:border-[#6b7c6b] transition-colors mb-3"
                     />
                     <input
                       type="email"
                       value={guest.email}
                       onChange={e => updateGuest(index, "email", e.target.value)}
-                      placeholder="correo@ejemplo.com"
-                      className="w-full rounded-xl border border-sand-200 bg-white/70 px-5 py-4 font-serif text-[18px] text-stone-700 placeholder:text-stone-300 outline-none focus:border-[#6b7c6b] transition-colors"
+                      placeholder={t.modal.emailPlaceholder}
+                      className="w-full rounded-xl border border-sand-200 bg-white/70 px-5 py-4 font-serif text-[17px] text-stone-700 placeholder:text-stone-300 outline-none focus:border-[#6b7c6b] transition-colors"
                     />
                   </div>
                 ))}
@@ -182,9 +185,9 @@ export default function RsvpModal({
                 <button
                   type="button"
                   onClick={addGuest}
-                  className="w-full rounded-2xl border border-dashed border-sand-300 py-4 font-sans text-[14px] tracking-widest text-stone-400 hover:text-stone-600 hover:border-sand-400 transition-colors cursor-pointer"
+                  className="w-full rounded-2xl border border-dashed border-sand-300 py-4 font-sans text-[13px] tracking-widest text-stone-400 hover:text-stone-600 hover:border-sand-400 transition-colors cursor-pointer"
                 >
-                  + AGREGAR OTRO INVITADO
+                  {t.modal.addGuest}
                 </button>
               </>
             )}
@@ -192,14 +195,14 @@ export default function RsvpModal({
 
           {/* Footer */}
           {(step === "form" || step === "loading") && (
-            <div className="px-9 py-6 border-t border-sand-200/60">
+            <div className="px-6 sm:px-9 py-5 sm:py-6 border-t border-sand-200/60">
               <button
                 type="button"
                 onClick={handleConfirm}
                 disabled={!isValid || step === "loading"}
-                className="w-full rounded-full bg-[#6b7c6b] px-6 py-4 text-[15px] font-sans tracking-widest text-white hover:bg-[#5a6b5a] disabled:opacity-40 disabled:cursor-not-allowed transition-colors cursor-pointer"
+                className="w-full rounded-full bg-[#6b7c6b] px-6 py-4 text-[14px] font-sans tracking-widest text-white hover:bg-[#5a6b5a] disabled:opacity-40 disabled:cursor-not-allowed transition-colors cursor-pointer"
               >
-                {step === "loading" ? "CONFIRMANDO…" : "CONFIRMAR ASISTENCIA"}
+                {step === "loading" ? t.modal.confirming : t.modal.confirm}
               </button>
             </div>
           )}

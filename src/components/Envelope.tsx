@@ -1,18 +1,21 @@
+import { useT } from "../i18n/LocaleContext"
+
 export default function Envelope() {
+  const t = useT()
+
   return (
     <div className="text-center">
       <h2 className="font-['Brittany','Great_Vibes',cursive] text-[clamp(3rem,12vw,5rem)] leading-none text-sand-500">
-        Lluvia de sobres
+        {t.envelope.title}
       </h2>
 
-      <p className="mt-8 mx-auto max-w-xl font-serif text-[24px] sm:text-[26px] leading-relaxed text-sand-500/85">
-        Nuestro mayor regalo es su compañía y el amor que nos brindan.
-        Si desean acompañarnos con un detalle, una lluvia de sobres será más que bienvenida.
+      <p className="mt-8 mx-auto max-w-xl font-serif text-[20px] sm:text-[22px] leading-relaxed text-sand-500/85">
+        {t.envelope.text}
       </p>
 
       {/* Ilustración de sobres */}
       <div className="mt-10 flex justify-center">
-        <EnvelopeIllustration className="w-72 sm:w-96" />
+        <EnvelopeIllustration className="w-64 sm:w-96" />
       </div>
     </div>
   )
@@ -52,10 +55,10 @@ function EnvelopeIllustration({ className }: { className?: string }) {
         {/* Solapa */}
         <path d="M110 126 L182 168 L255 126"
           stroke="#94B0B8" strokeWidth="1.5" strokeLinejoin="round" fill="none" />
-        {/* "To: J.R." */}
+        {/* "To: S&O." */}
         <text x="155" y="192" fontSize="10" fill="#6A8F98"
           fontFamily="Georgia, serif" fontStyle="italic" opacity="0.85">
-          To: S&O.
+          To: S&amp;O.
         </text>
       </g>
 
