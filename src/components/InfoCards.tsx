@@ -28,7 +28,7 @@ export default function InfoCards() {
 
       {/* Card: Clima */}
       <div className="bg-[#E7E9E4]/80 p-10 sm:p-12">
-        <div className="text-center text-[42px] leading-none text-sand-500/80 font-['Brittany','Great_Vibes',cursive]">
+        <div className="text-center text-[56px] leading-none text-sand-500/80 font-['Brittany','Great_Vibes',cursive]">
           Clima en Junio
         </div>
 
