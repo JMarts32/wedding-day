@@ -8,7 +8,7 @@ interface Guest {
 
 type ModalStep = "form" | "loading" | "success" | "error"
 
-const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:8003"
+const API_URL = import.meta.env.VITE_API_URL ?? ""
 
 export default function RsvpModal({
   open,
