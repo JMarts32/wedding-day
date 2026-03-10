@@ -10,17 +10,29 @@ function detectLocale(): Locale {
   return "en"
 }
 
-const LocaleContext = createContext<T>(translations.en)
+interface LocaleContextValue {
+  t: T
+  locale: Locale
+}
+
+const LocaleContext = createContext<LocaleContextValue>({
+  t: translations.en,
+  locale: "en",
+})
 
 export function LocaleProvider({ children }: PropsWithChildren) {
-  const t = useMemo(() => {
+  const value = useMemo(() => {
     const locale = detectLocale()
-    return translations[locale]
+    return { t: translations[locale], locale }
   }, [])
 
-  return <LocaleContext.Provider value={t}>{children}</LocaleContext.Provider>
+  return <LocaleContext.Provider value={value}>{children}</LocaleContext.Provider>
 }
 
 export function useT(): T {
-  return useContext(LocaleContext)
+  return useContext(LocaleContext).t
+}
+
+export function useLocale(): Locale {
+  return useContext(LocaleContext).locale
 }

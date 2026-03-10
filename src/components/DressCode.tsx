@@ -27,18 +27,18 @@ export default function DressCode() {
         {/* FILA 1 — Títulos y texto */}
         <div className="flex flex-col items-center gap-3 order-1 sm:order-none">
           <div className="w-full border-b border-[#d4c4a8]/40 pb-2">
-            <div className="font-serif text-[2.2rem] sm:text-[2.5rem] text-[#9f978b]">{t.dressCode.women}</div>
+            <div className="font-serif text-[2.2rem] sm:text-[2.5rem] text-text-stone-600">{t.dressCode.women}</div>
           </div>
-          <p className="font-serif text-[20px] sm:text-[21px] leading-relaxed text-[#9f978b]/80">
+          <p className="font-serif text-[20px] sm:text-[21px] leading-relaxed text-text-stone-600">
             {t.dressCode.womenDesc}
           </p>
         </div>
 
         <div className="flex flex-col items-center gap-3 order-4 sm:order-none mt-10 sm:mt-0">
           <div className="w-full border-b border-[#d4c4a8]/40 pb-2">
-            <div className="font-serif text-[2.2rem] sm:text-[2.5rem] text-[#9f978b]">{t.dressCode.men}</div>
+            <div className="font-serif text-[2.2rem] sm:text-[2.5rem] text-text-stone-600">{t.dressCode.men}</div>
           </div>
-          <p className="font-serif text-[20px] sm:text-[21px] leading-relaxed text-[#9f978b]/80">
+          <p className="font-serif text-[20px] sm:text-[21px] leading-relaxed text-stone-600">
             {t.dressCode.menDesc}
           </p>
         </div>

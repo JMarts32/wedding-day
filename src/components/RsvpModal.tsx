@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useT } from "../i18n/LocaleContext"
+import { useT, useLocale } from "../i18n/LocaleContext"
 
 interface Guest {
   name: string
@@ -18,6 +18,7 @@ export default function RsvpModal({
   onClose: () => void
 }) {
   const t = useT()
+  const locale = useLocale()
   const [step, setStep] = useState<ModalStep>("form")
   const [errorMsg, setErrorMsg] = useState("")
   const [guests, setGuests] = useState<Guest[]>([{ name: "", email: "" }])
@@ -53,7 +54,7 @@ export default function RsvpModal({
       const res = await fetch(`${API_URL}/rsvp/confirm`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ guests }),
+        body: JSON.stringify({ guests, language: locale }),
       })
       const data = await res.json()
       if (!res.ok) throw new Error(data.detail ?? "Error")
