@@ -114,7 +114,7 @@ export const translations = {
       successText: "See you on ",
       successDate: "June 27",
       successEmail:
-        ". Check your email — we sent you the confirmation and the calendar event.",
+        ". Check your email — we sent you the confirmation and the calendar event. If you don't see it in your inbox, please check your spam, junk, or other folders.",
       errorRetry: "TRY AGAIN",
       loading: "Confirming attendance…",
     },
@@ -234,7 +234,7 @@ export const translations = {
       successText: "Nos vemos el ",
       successDate: "27 de junio",
       successEmail:
-        ". Revisa tu correo — te enviamos la confirmación y el evento de calendario.",
+        ". Revisa tu correo — te enviamos la confirmación y el evento de calendario. Si no lo ves en tu bandeja principal, revisa en spam, correo no deseado u otras carpetas.",
       errorRetry: "INTENTAR DE NUEVO",
       loading: "Confirmando asistencia…",
     },
@@ -354,7 +354,7 @@ export const translations = {
       successText: "À bientôt le ",
       successDate: "27 juin",
       successEmail:
-        ". Vérifiez votre e-mail — nous vous avons envoyé la confirmation et l'événement du calendrier.",
+        ". Vérifiez votre e-mail — nous vous avons envoyé la confirmation et l'événement du calendrier. Si vous ne le voyez pas dans votre boîte de réception, vérifiez vos dossiers spam, indésirables ou autres.",
       errorRetry: "RÉESSAYER",
       loading: "Confirmation en cours…",
     },
