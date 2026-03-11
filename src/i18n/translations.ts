@@ -118,7 +118,7 @@ export const translations = {
       errorRetry: "TRY AGAIN",
       loading: "Confirming attendance…",
     },
-    footer: "Silvia & Owen · 27.06.2026",
+    footer: "With love, Silvia & Owen · June 27, 2026",
   },
 
   es: {
@@ -238,7 +238,7 @@ export const translations = {
       errorRetry: "INTENTAR DE NUEVO",
       loading: "Confirmando asistencia…",
     },
-    footer: "Silvia & Owen · 27.06.2026",
+    footer: "Con amor, Silvia & Owen · 27 de junio de 2026",
   },
 
   fr: {
@@ -358,7 +358,7 @@ export const translations = {
       errorRetry: "RÉESSAYER",
       loading: "Confirmation en cours…",
     },
-    footer: "Silvia & Owen · 27.06.2026",
+    footer: "Avec amour, Silvia & Owen · 27 juin 2026",
   },
 } satisfies Record<Locale, unknown>
 

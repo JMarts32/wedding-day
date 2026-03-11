@@ -9,7 +9,7 @@ type Item = {
 }
 
 const items: Item[] = [
-  { titleKey: "welcome",  time: "4:00 PM", side: "left",  Icon: IconWelcome },
+  { titleKey: "welcome",  time: "3:30 PM", side: "left",  Icon: IconWelcome },
   { titleKey: "ceremony", time: "4:30 PM", side: "right", Icon: IconChurch  },
   { titleKey: "dinner",   time: "6:30 PM", side: "left",  Icon: IconDinner  },
   { titleKey: "party",    time: "—",       side: "right", Icon: IconParty   },

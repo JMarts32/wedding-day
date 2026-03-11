@@ -16,7 +16,8 @@ export default function InfoCards() {
         </div>
 
         <p className="mt-3 font-serif text-[21px] leading-[1.6] text-sand-500/75">
-          Km 7, vía Retorno Tablanca. Urbanización: Tablanca. Parcela: N° 12,<br />
+          Km7 vía Retorno la Españolita. Urbanización: Tablanca.<br />
+          Parcela N12, Finca Villa Jardín.<br />
           Piedecuesta, Santander
         </p>
 
